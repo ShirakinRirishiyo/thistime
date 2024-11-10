@@ -35,6 +35,8 @@
 # include "./printf/ft_printf.h"
 # include "./minilibx-linux/mlx.h"
 
+# define MAX_MAP_WIDTH 100
+# define MAX_MAP_HEIGHT 100
 
 # define ESC	65307
 # define W		119

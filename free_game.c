@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dediaz-f <dediaz-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dediaz-f <dediaz-f@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 21:09:14 by dediaz-f          #+#    #+#             */
-/*   Updated: 2024/11/10 09:25:16 by dediaz-f         ###   ########.fr       */
+/*   Updated: 2024/11/10 10:56:14 by dediaz-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void free_game(t_mapa *data)
 	mlx_destroy_image(data->mlx, data->imagenes->fuego1);
 	mlx_destroy_image(data->mlx, data->imagenes->fuego2);
 	free(data->imagenes);
-	
 	free_array(data->map);
 	free(data);
 }

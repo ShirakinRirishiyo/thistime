@@ -64,37 +64,61 @@ void calloc_failure(char *str)
     exit(EXIT_FAILURE);  // Terminar el programa con un código de salida de error
 }
 
-void load_map(t_mapa *data)
-{
-    int fd, i = 0;
-    char *line;
-
-    fd = open(data->text, O_RDONLY);
+// Función para obtener dimensiones del mapa y validar su tamaño
+void obtener_dimensiones_y_validar(t_mapa *data) {
+    int fd = open(data->text, O_RDONLY);
     if (fd == -1)
         manejar_error("Error al abrir el archivo");
+
     data->height = 0;
     data->width = 0;
+    char *line;
+
+    // Leer cada línea para obtener ancho y alto del mapa
     while ((line = get_next_line(fd)) != NULL) {
         int len = ft_strlen(line);
         if (line[len - 1] == '\n')
-            line[len - 1] = '\0'; // Eliminamos el salto de línea
+            line[len - 1] = '\0';
+
         if (len > data->width)
             data->width = len - 1;
-        
+
         data->height++;
         free(line);
     }
     close(fd);
+
+    // Verificar si el mapa está vacío
+    if (data->height == 0 || data->width == 0)
+        manejar_error("Error: El mapa está vacío.");
+
+    // Verificar si el mapa es demasiado grande
+    if (data->height > MAX_MAP_HEIGHT || data->width > MAX_MAP_WIDTH)
+        manejar_error("Error: El mapa es demasiado grande.");
+}
+
+// Función para asignar memoria para el mapa
+void asignar_memoria_mapa(t_mapa *data) {
     data->map = (char **)malloc(sizeof(char *) * (data->height + 1));
     if (data->map == NULL)
         manejar_error("Error al asignar memoria para el mapa");
-    fd = open(data->text, O_RDONLY);
+}
+
+// Función para cargar el contenido del mapa en data->map
+void cargar_contenido_mapa(t_mapa *data) {
+    int fd = open(data->text, O_RDONLY);
     if (fd == -1)
         manejar_error("Error al abrir el archivo");
+
+    char *line;
+    int i = 0;
+
+    // Leer cada línea y almacenarla en el mapa
     while ((line = get_next_line(fd)) != NULL) {
         int len = ft_strlen(line);
         if (line[len - 1] == '\n')
-            line[len - 1] = '\0'; // Eliminamos el salto de línea
+            line[len - 1] = '\0';
+
         data->map[i++] = ft_strdup(line);
         free(line);
     }
@@ -102,6 +126,12 @@ void load_map(t_mapa *data)
     close(fd);
 }
 
+// Función principal para cargar el mapa
+void load_map(t_mapa *data) {
+    obtener_dimensiones_y_validar(data);
+    asignar_memoria_mapa(data);
+    cargar_contenido_mapa(data);
+}
 
 void ft_window_size(t_mapa *data)
 {

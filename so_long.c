@@ -74,6 +74,7 @@ int	main(int argc, char *argv[])
 	data->mlx = mlx_init();
 	data->text = argv[1];
 	load_map(data);
+	ft_check_borders(data);
 	llamada_funciones(data, argv);
 	data->win = mlx_new_window(data->mlx, data->width * 64,
 			data->height * 64, "so_long");

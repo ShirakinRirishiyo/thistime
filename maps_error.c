@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maps_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dediaz-f <dediaz-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dediaz-f <dediaz-f@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 13:20:59 by dediaz-f          #+#    #+#             */
-/*   Updated: 2024/11/10 10:37:20 by dediaz-f         ###   ########.fr       */
+/*   Updated: 2024/11/10 10:49:14 by dediaz-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,29 +42,31 @@ void	objetos_de_mapa(t_mapa *data)
 	}
 }
 
- void	ft_check_borders(t_mapa *data)
-{
-    data->y = 0;
-    while (data->y < data->height)  // Usamos 'height' para las filas
-    {
-        if ((int)ft_strlen(data->map[data->y]) != data->width)
-            manejar_error("Error\nmap has to be rectangular\n");
+void exit_error(const char *message) {
+    fprintf(stderr, "%s\n", message);
+    exit(EXIT_FAILURE);
+}
 
-        data->x = 0;
-        while (data->x < data->width)  // Usamos 'width' para las columnas
-        {
-            if (data->map[data->y][data->x] != '0' && data->map[data->y][data->x] != '1' &&
-                data->map[data->y][data->x] != 'C' && data->map[data->x][data->y] != 'P' &&
-                data->map[data->y][data->x] != 'E')
-                manejar_error("Error\nfor map '0','1','C','P','E' are valid\n");
-            else if ((data->y == 0 || data->x == 0) && data->map[data->y][data->x] != '1')
-                manejar_error("Error\nmap has to be surrounded by walls\n");
-            else if ((data->y == data->height - 1 || data->x == data->width - 1) &&
-                data->map[data->y][data->x] != '1')
-                manejar_error("Error\nmap has to be surrounded by walls\n");
-            data->x++;
+void ft_check_borders(t_mapa *mapa) 
+{
+    int idx;
+
+    // Verificar la primera y última fila
+    idx = 0;
+    while (idx < mapa->width) {
+        if (mapa->map[0][idx] != '1' || mapa->map[mapa->height - 1][idx] != '1') {
+            exit_error("Error: El borde superior o inferior no está cerrado.");
         }
-        data->y++;
+        idx++;
+    }
+
+    // Verificar la primera y última columna
+    idx = 0;
+    while (idx < mapa->height) {
+        if (mapa->map[idx][0] != '1' || mapa->map[idx][mapa->width - 1] != '1') {
+            exit_error("Error: El borde izquierdo o derecho no está cerrado.");
+        }
+        idx++;
     }
 }
 
