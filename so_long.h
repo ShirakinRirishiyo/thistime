@@ -31,9 +31,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include "../printf/libft/libft.h"
-# include "../printf/ft_printf.h"
-# include "../minilibx-linux/mlx.h"
+# include "./printf/libft/libft.h"
+# include "./printf/ft_printf.h"
+# include "./minilibx-linux/mlx.h"
 
 
 # define ESC	65307
@@ -42,7 +42,7 @@
 # define S		115
 # define D		100
 # define SPRITE_SIZE 64
-# define BACKGROUND_COLOR 0x00FF00 
+# define BACKGROUif (cargar_imagen(data, &(data->imagenes->collect2), COLLECT2_IMAGE)) return 1;ND_COLOR 0x00FF00 
 
 // # define RED "\033[0;31m"
 // # define BLUE "\033[0;34m"
@@ -52,11 +52,11 @@
 // # define WHITE "\033[0;97m"
 // # define RESET "\033[0m"
 
-# define WALL_IMAGE "../sprites/walls.xpm"
-# define SPACE_IMAGE "../sprites/pared.xpm"
-# define PLAYER_F1 "../sprites/player1.xpm"
-# define COLLECT1_IMAGE "../sprites/oritoabajo.xpm"
-# define EXIT_IMAGE "../sprites/castle.xpm"
+# define WALL_IMAGE "./sprites/walls.xpm"
+# define SPACE_IMAGE "./sprites/pared.xpm"
+# define PLAYER_F1 "./sprites/player1.xpm"
+# define COLLECT1_IMAGE "./sprites/oritoabajo.xpm"
+# define EXIT_IMAGE "./sprites/castle.xpm"
 
 
 # define VALIDOS "10CPE"
@@ -77,9 +77,7 @@ typedef struct s_imagenes
     void *space;
     void *player_frame1;
     void *player_frame2;
-    void *player_frame3;
     void *collect;
-    void *collect2;
     void *exit;
     void *torre;
     void *fuego1;
@@ -193,9 +191,7 @@ void flood_fill(int x, int y, t_check *check, t_mapa *data);
 int camino_hacia_coleccionables(t_check *check);
 int camino_hacia_salida(t_check *check);
 int llamada_funciones(t_mapa *data, char **argv);
-void verificar_linea(t_mapa *data);
 void check_general(t_mapa *data);
-int es_pared_bordeadora(t_mapa *data, int i, int j);
 void draw_grid(t_mapa *data); 
 void reset_data(t_mapa *data, char *name);
 void check_general(t_mapa *data);

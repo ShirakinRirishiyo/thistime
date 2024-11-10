@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maps_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dediaz-f <dediaz-f@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dediaz-f <dediaz-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 13:20:59 by dediaz-f          #+#    #+#             */
-/*   Updated: 2024/11/10 08:24:22 by dediaz-f         ###   ########.fr       */
+/*   Updated: 2024/11/10 10:37:20 by dediaz-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,30 +44,27 @@ void	objetos_de_mapa(t_mapa *data)
 
  void	ft_check_borders(t_mapa *data)
 {
-    int x;
-    int y;
-
-    y = 0;
-    while (y < data->height)  // Usamos 'height' para las filas
+    data->y = 0;
+    while (data->y < data->height)  // Usamos 'height' para las filas
     {
-        if ((int)ft_strlen(data->map[y]) != data->width)
+        if ((int)ft_strlen(data->map[data->y]) != data->width)
             manejar_error("Error\nmap has to be rectangular\n");
 
-        x = 0;
-        while (x < data->width)  // Usamos 'width' para las columnas
+        data->x = 0;
+        while (data->x < data->width)  // Usamos 'width' para las columnas
         {
-            if (data->map[y][x] != '0' && data->map[y][x] != '1' &&
-                data->map[y][x] != 'C' && data->map[y][x] != 'P' &&
-                data->map[y][x] != 'E')
+            if (data->map[data->y][data->x] != '0' && data->map[data->y][data->x] != '1' &&
+                data->map[data->y][data->x] != 'C' && data->map[data->x][data->y] != 'P' &&
+                data->map[data->y][data->x] != 'E')
                 manejar_error("Error\nfor map '0','1','C','P','E' are valid\n");
-            else if ((y == 0 || x == 0) && data->map[y][x] != '1')
+            else if ((data->y == 0 || data->x == 0) && data->map[data->y][data->x] != '1')
                 manejar_error("Error\nmap has to be surrounded by walls\n");
-            else if ((y == data->height - 1 || x == data->width - 1) &&
-                data->map[y][x] != '1')
+            else if ((data->y == data->height - 1 || data->x == data->width - 1) &&
+                data->map[data->y][data->x] != '1')
                 manejar_error("Error\nmap has to be surrounded by walls\n");
-            x++;
+            data->x++;
         }
-        y++;
+        data->y++;
     }
 }
 

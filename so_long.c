@@ -74,7 +74,6 @@ int	main(int argc, char *argv[])
 	data->mlx = mlx_init();
 	data->text = argv[1];
 	load_map(data);
-	ft_window_size(data);
 	llamada_funciones(data, argv);
 	data->win = mlx_new_window(data->mlx, data->width * 64,
 			data->height * 64, "so_long");
@@ -83,8 +82,5 @@ int	main(int argc, char *argv[])
 	frame_s(data);
 	mlx_loop(data->mlx);
 	free_game(data);
-	// free(data->imagenes);
-	// free_array(data->map);
-	// free(data);
 	return (0);
 }

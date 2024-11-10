@@ -46,7 +46,6 @@ int	cargar_imagenes(t_mapa *data)
 	if (cargar_imagen(data, &(data->imagenes->space), SPACE_IMAGE)) return 1;
 	if (cargar_imagen(data, &(data->imagenes->player_frame1), PLAYER_F1)) return 1;
 	if (cargar_imagen(data, &(data->imagenes->collect), COLLECT1_IMAGE)) return 1;
-	if (cargar_imagen(data, &(data->imagenes->collect2), COLLECT2_IMAGE)) return 1;
 	if (cargar_imagen(data, &(data->imagenes->exit), EXIT_IMAGE)) return 1;
 	ft_printf("Todas las imágenes cargadas correctamente.\n");
 	return (0);

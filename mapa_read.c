@@ -69,41 +69,28 @@ void load_map(t_mapa *data)
     int fd, i = 0;
     char *line;
 
-    // Abrimos el archivo y verificamos que se abrió correctamente
     fd = open(data->text, O_RDONLY);
     if (fd == -1)
         manejar_error("Error al abrir el archivo");
-
-    // Inicializamos las dimensiones
     data->height = 0;
     data->width = 0;
-
-    // Primer pase para contar filas y obtener el ancho máximo
     while ((line = get_next_line(fd)) != NULL) {
-        // Actualizamos el ancho y eliminamos el salto de línea
         int len = ft_strlen(line);
         if (line[len - 1] == '\n')
             line[len - 1] = '\0'; // Eliminamos el salto de línea
-
         if (len > data->width)
-            data->width = len;
+            data->width = len - 1;
         
         data->height++;
         free(line);
     }
     close(fd);
-
-    // Asignamos memoria para el mapa
     data->map = (char **)malloc(sizeof(char *) * (data->height + 1));
     if (data->map == NULL)
         manejar_error("Error al asignar memoria para el mapa");
-
-    // Reabrimos el archivo para almacenar el contenido en el mapa
     fd = open(data->text, O_RDONLY);
     if (fd == -1)
         manejar_error("Error al abrir el archivo");
-
-    // Segundo pase para cargar el contenido en `data->map`
     while ((line = get_next_line(fd)) != NULL) {
         int len = ft_strlen(line);
         if (line[len - 1] == '\n')

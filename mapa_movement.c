@@ -23,29 +23,22 @@ void movement(t_mapa *data, int move_x, int move_y)
         printf("Movimiento bloqueado por una pared en (%d, %d)\n", data->y + move_y, data->x + move_x);  // Depuración
         return;
     }
-
-    // Comprobar si el movimiento es hacia un colectable o una casilla vacía
     if (data->map[data->y + move_y][data->x + move_x] == 'C' || data->map[data->y + move_y][data->x + move_x] == '0') {
         if (data->map[data->y + move_y][data->x + move_x] == 'C') {
             data->colectables--;
             printf("Colectable recogido. Colectables restantes: %d\n", data->colectables);  // Depuración
         }
-        // Actualizar el mapa
         data->map[data->y][data->x] = '0';
         data->map[data->y + move_y][data->x + move_x] = 'P';
         data->y += move_y;
         data->x += move_x;
         data->pasos++;
-
-        // Imprimir el conteo de pasos
         printf("Movido a (%d, %d). Pasos: %d\n", data->x, data->y, data->pasos);  // Depuración
     }
-    // Comprobar si es la salida
     else if (data->map[data->y + move_y][data->x + move_x] == 'E' && data->colectables == 0) {
         printf("¡Salida alcanzada! Colectables restantes: %d\n", data->colectables);  // Depuración
         exit_game(data);
     }
-    // Actualizar pantalla
     actualizar_pantalla(data);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils_maps.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dediaz-f <dediaz-f@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dediaz-f <dediaz-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:49:45 by dediaz-f          #+#    #+#             */
-/*   Updated: 2024/11/10 05:16:18 by dediaz-f         ###   ########.fr       */
+/*   Updated: 2024/11/10 09:57:32 by dediaz-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,53 +48,3 @@ void procesa_line(t_mapa *data, t_mapa_info *info)
     ft_strlcpy(data->map[info->i], info->line, data->width + 1);  // Copia la línea al mapa
     // NO liberar info->line aquí
 }
-
-
-/*int check_map_content(t_mapa *data)
-{
-    t_map_counts counts = {0};  // Inicializar la estructura de contadores
-    int error_found = 0;         // Variable para indicar si ocurrió algún error
-
-    // Recorremos el mapa usando bucles while
-    int y = 0;
-    while (y < data->height)
-    {
-        int x = 0;
-        while (x < data->width)
-        {
-            char cell = data->map[y][x];
-            if (cell == 'P')      // Contar el jugador
-                counts.player_count++;
-            else if (cell == 'E') // Contar la salida
-                counts.exit_count++;
-            else if (cell == 'C') // Contar los coleccionables
-                counts.collectable_count++;
-            else if (cell != '1' && cell != '0') // Caracteres inválidos
-            {
-                error_found = 1;
-                break; // Salir del bucle si encontramos un error
-            }
-            x++;
-        }
-        if (error_found)
-            break; // Salir del bucle si encontramos un error
-        y++;
-    }
-
-    if (counts.player_count != 1)
-        error_found = 1;
-    if (counts.exit_count != 1)
-        error_found = 1;
-    if (counts.collectable_count < 1)
-        error_found = 1;
-    if (error_found)
-    {
-        ft_printf("Error: El mapa tiene configuraciones inválidas.\n");
-        return (0);  // Retorna 0 para indicar que la validación falló
-    }
-    data->player = counts.player_count;
-    data->finish = counts.exit_count;
-    data->colectables = counts.collectable_count;
-    return (1); // Retorna 1 si el contenido del mapa es válido
-}
-*/
