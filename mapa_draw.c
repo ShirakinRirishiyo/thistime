@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-void	dibujar_elemento(t_contxt *ctx, void *img, int x, int y)
+void	draw_element(t_contxt *ctx, void *img, int x, int y)
 {
 	if (mlx_put_image_to_window(ctx->mlx, ctx->win, img,
 			x * SPRITE_SIZE, y * SPRITE_SIZE) != 0)
@@ -25,17 +25,17 @@ void	dibujar_elemento(t_contxt *ctx, void *img, int x, int y)
 	}
 }
 
-void	dibujar_elemento_del_mapa(t_contxt *ctx, t_mapa *data, int i, int j)
+void	draw_map_element(t_contxt *ctx, t_mapa *data, int i, int j)
 {
 	if (data->map[i][j] == '1')
-		dibujar_elemento(ctx, ctx->imagenes->wall, j, i);
+		draw_element(ctx, ctx->imagenes->wall, j, i);
 	else if (data->map[i][j] == '0')
-		dibujar_elemento(ctx, ctx->imagenes->space, j, i);
+		draw_element(ctx, ctx->imagenes->space, j, i);
 	else if (data->map[i][j] == 'P')
-		dibujar_elemento(ctx, ctx->imagenes->player_frame1, j, i);
+		draw_element(ctx, ctx->imagenes->player_frame1, j, i);
 	else if (data->map[i][j] == 'C')
 	{
-		dibujar_elemento(ctx, ctx->imagenes->collect, j, i);
+		draw_element(ctx, ctx->imagenes->collect, j, i);
 		if (data->x == j && data->y == i)
 		{
 			data->map[i][j] = '0';
@@ -45,13 +45,13 @@ void	dibujar_elemento_del_mapa(t_contxt *ctx, t_mapa *data, int i, int j)
 	else if (data->map[i][j] == 'E')
 	{
 		ft_printf("Dibujando salida en (%d, %d)\n", i, j);
-		dibujar_elemento(ctx, ctx->imagenes->exit, j, i);
+		draw_element(ctx, ctx->imagenes->exit, j, i);
 	}
 	else
 		ft_printf("Error\n: Wron character");
 }
 
-void	dibujo_mapa(t_mapa *data)
+void	draw_map(t_mapa *data)
 {
 	int			i;
 	int			j;
@@ -71,7 +71,7 @@ void	dibujo_mapa(t_mapa *data)
 		j = 0;
 		while (data->map[i][j])
 		{
-			dibujar_elemento_del_mapa(&ctx, data, i, j);
+			draw_map_element(&ctx, data, i, j);
 			j++;
 		}
 		i++;

@@ -48,7 +48,7 @@ void	reset_data(t_mapa *data, char *name)
 	data->text = name;
 }
 
-void	manejar_error(const char *mensaje)
+void	handle_error(const char *mensaje)
 {
 	fprintf(stderr, "%s\n", mensaje);
 	exit(EXIT_FAILURE);

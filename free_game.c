@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dediaz-f <dediaz-f@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dediaz-f <dediaz-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 21:09:14 by dediaz-f          #+#    #+#             */
-/*   Updated: 2024/11/10 12:51:58 by dediaz-f         ###   ########.fr       */
+/*   Updated: 2024/11/10 20:28:57 by dediaz-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	free_double_p(t_mapa *data)
 
 	while (i < data->height)
 	{
-		free(data->map[i])
+		free(data->map[i]);
 		i++;
 	}
 	free(data->map);

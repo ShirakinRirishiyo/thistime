@@ -6,13 +6,13 @@
 /*   By: dediaz-f <dediaz-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:48:48 by dediaz-f          #+#    #+#             */
-/*   Updated: 2024/11/10 11:12:27 by dediaz-f         ###   ########.fr       */
+/*   Updated: 2024/11/10 20:51:03 by dediaz-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_printear(unsigned int n)
+void	ft_printing(unsigned int n)
 {
 	char	*str;
 
@@ -27,6 +27,7 @@ void	ft_printear(unsigned int n)
 		ft_printf("Error al convertir el número de pasos.\n");
 	}
 }
+
 //int exit_win(t_mapa *data);
 
 int	exit_game(t_mapa *data)
@@ -54,7 +55,7 @@ void	ft_game_result(t_mapa *data)
 		data->win, data->imagenes->player_frame1, x, y);
 }
 
-void	actualizar_pantalla(t_mapa *data)
+void	refresh_window(t_mapa *data)
 {
 	mlx_clear_window(data->mlx, data->win);
 	dibujo_mapa(data);

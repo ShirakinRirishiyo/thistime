@@ -44,17 +44,17 @@ int load_imagenes(t_mapa *data)
     }
     if (load_imagen(data, &(data->imagenes->wall), WALL_IMAGE)) 
     {
-        free_imagenes(data);  // Liberar imágenes ya cargadas
+        free_imagenes(data); 
         return (1);
     }
     if (load_imagen(data, &(data->imagenes->space), SPACE_IMAGE)) 
     {
-        free_imagenes(data);  // Liberar imágenes ya cargadas
+        free_imagenes(data); 
         return (1);
     }
     if (load_imagen(data, &(data->imagenes->player_frame1), PLAYER_F1)) 
     {
-        free_imagenes(data);  // Liberar imágenes ya cargadas
+        free_imagenes(data);  
         return (1);
     }
     if (load_imagen(data, &(data->imagenes->collect), COLLECT1_IMAGE)) 
@@ -87,4 +87,3 @@ void handle_error_fd(const char *mensaje, int fd, char *line)
     fprintf(stderr, "%s\n", mensaje);
     exit(EXIT_FAILURE);
 }
-

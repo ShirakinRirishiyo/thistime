@@ -44,7 +44,7 @@ void	free_check(t_check *check, int height)
 	free(check);
 }
 
-void	encontrar_posiciones(t_check *check, t_mapa *data)
+void	find_position(t_check *check, t_mapa *data)
 {
 	int	i;
 	int	j;
@@ -89,7 +89,7 @@ void	flood_fill(int x, int y, t_check *check, t_mapa *data)
 		flood_fill(x + 1, y, check, data);
 }
 
-int	analizar_accesibilidad(t_mapa *data)
+int	ft_accesibility(t_mapa *data)
 {
 	t_check	*check;
 	int		acceso_coleccionables;
