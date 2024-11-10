@@ -35,7 +35,7 @@ void	movement(t_mapa *data, int move_x, int move_y)
 	{
 		exit_game(data);
 	}
-	actualizar_pantalla(data);
+	refresh_window(data);
 }
 
 int	key_hook(int keycode, void *param)

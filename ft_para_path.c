@@ -6,7 +6,7 @@
 /*   By: dediaz-f <dediaz-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 16:14:53 by dediaz-f          #+#    #+#             */
-/*   Updated: 2024/11/10 20:56:50 by dediaz-f         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:24:06 by dediaz-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	way_to_collect(t_check *check)
 	return (check->coins_left == 0);
 }
 
-int	camino_hacia_salida(t_check *check)
+int	way_to_exit(t_check *check)
 {
 	return (check->maps[check->exit_x][check->exit_y] == 1);
 }
@@ -36,7 +36,7 @@ void	ft_input_error(int argc)
 {
 	if (argc != 2)
 	{
-		manejar_error("Error\nUsage: './so_long mappath/mapname.ber'\n");
+		handle_error("Error\nUsage: './so_long mappath/mapname.ber'\n");
 		exit(EXIT_FAILURE);
 	}
 }

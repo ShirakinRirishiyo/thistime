@@ -79,24 +79,24 @@ void	flood_fill(int x, int y, t_check *check, t_mapa *data)
 	check->maps[x][y] = 1;
 	if (data->map[x][y] == 'C')
 		check->coins_left--;
-	if (es_valido(x, y - 1, check, data))
+	if (is_valid(x, y - 1, check, data))
 		flood_fill(x, y - 1, check, data);
-	if (es_valido(x, y + 1, check, data))
+	if (is_valid(x, y + 1, check, data))
 		flood_fill(x, y + 1, check, data);
-	if (es_valido(x - 1, y, check, data))
+	if (is_valid(x - 1, y, check, data))
 		flood_fill(x - 1, y, check, data);
-	if (es_valido(x + 1, y, check, data))
+	if (is_valid(x + 1, y, check, data))
 		flood_fill(x + 1, y, check, data);
 }
 
 int	ft_accesibility(t_mapa *data)
 {
 	t_check	*check;
-	int		acceso_coleccionables;
-	int		acceso_salida;
+	int		access_colectables;
+	int		access_exit;
 
 	check = inicializar_check(data->height, data->width);
-	encontrar_posiciones(check, data);
+	find_position(check, data);
 	if (check->exitparse == 0)
 	{
 		ft_printf("Error: Did not find an exit.\n");
@@ -104,9 +104,9 @@ int	ft_accesibility(t_mapa *data)
 		return (0);
 	}
 	flood_fill(data->start_i, data->start_j, check, data);
-	acceso_coleccionables = camino_hacia_coleccionables(check);
-	acceso_salida = camino_hacia_salida(check);
-	if (acceso_coleccionables == 1 && acceso_salida == 1)
+	access_colectables = way_to_collect(check);
+	access_exit = way_to_exit(check);
+	if (way_to_collect == 1 && access_exit == 1)
 	{
 		ft_printf("Player has access to all collectables and exit.\n");
 		liberar_check(check, data->height);
@@ -114,9 +114,9 @@ int	ft_accesibility(t_mapa *data)
 	}
 	else
 	{
-		if (acceso_coleccionables == 0)
+		if (way_to_collect == 0)
 			ft_printf("Error\n: No access to all collectables.\n");
-		if (acceso_salida == 0)
+		if (access_exit == 0)
 			ft_printf("Error\n: No access to exit.\n");
 		liberar_check(check, data->height);
 		return (0);

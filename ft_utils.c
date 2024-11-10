@@ -6,7 +6,7 @@
 /*   By: dediaz-f <dediaz-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:48:48 by dediaz-f          #+#    #+#             */
-/*   Updated: 2024/11/10 20:51:03 by dediaz-f         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:20:54 by dediaz-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_game_result(t_mapa *data)
 void	refresh_window(t_mapa *data)
 {
 	mlx_clear_window(data->mlx, data->win);
-	dibujo_mapa(data);
+	draw_map(data);
 }
 
 void	malloc_fail(void)

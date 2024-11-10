@@ -58,7 +58,7 @@ void	calloc_failure(char *str)
 
 void	load_map(t_mapa *data)
 {
-	obtener_dimensiones_y_validar(data);
-	asignar_memoria_mapa(data);
-	cargar_contenido_mapa(data);
+	//mapa_dimention_window(data);
+	memory_map(data);
+	upload_mapa(data);
 }

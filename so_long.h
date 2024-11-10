@@ -159,6 +159,7 @@ void	memory_map(t_mapa *data);
 void	upload_mapa(t_mapa *data);
 int		is_valid(int x, int y, t_check *check, t_mapa *data);
 void	free_double_p(t_mapa *data);
+int		way_to_exit(t_check *check);
 
 int write_itoa(int n);
 void ft_input_error(int argc);
