@@ -29,9 +29,11 @@ void	movement(t_mapa *data, int move_x, int move_y)
 		data->y += move_y;
 		data->x += move_x;
 		data->pasos++;
-		else if (data->map[data->y + move_y][data->x + move_x] == 'E'
-				&& data->colectables == 0)
-			exit_game(data);
+	}
+	else if (data->map[data->y + move_y][data->x + move_x] == 'E'
+			&& data->colectables == 0)
+	{
+		exit_game(data);
 	}
 	actualizar_pantalla(data);
 }

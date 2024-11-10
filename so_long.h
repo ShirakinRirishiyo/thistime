@@ -126,7 +126,7 @@ typedef struct s_mapa_info
     int fd;                    
     char *line;               
     int line_length;           
-    int current_line_length;   l
+    int current_line_length;   
     int first_line_length;     
     int is_rectangular;        
     int i;                     
