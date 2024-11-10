@@ -3,7 +3,7 @@ NAME_BONUS = so_long_bonus
 
 # Compilador y opciones
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror # -fsanitize=address
 INCLUDES = -I./include -I./printf/libft -I./printf
 LIBS = -L./printf -lftprintf -L./printf/libft -lft -L./minilibx-linux -lmlx -lXext -lX11 -lm
 

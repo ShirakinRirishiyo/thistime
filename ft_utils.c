@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dediaz-f <dediaz-f@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dediaz-f <dediaz-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:48:48 by dediaz-f          #+#    #+#             */
-/*   Updated: 2024/11/10 05:04:02 by dediaz-f         ###   ########.fr       */
+/*   Updated: 2024/11/10 11:12:27 by dediaz-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_printear(unsigned int n)
 		ft_printf("Error al convertir el número de pasos.\n");
 	}
 }
+//int exit_win(t_mapa *data);
 
 int	exit_game(t_mapa *data)
 {
@@ -41,11 +42,6 @@ int	exit_game(t_mapa *data)
 	exit (EXIT_FAILURE);
 }
 
-void	manejar_error(const char *mensaje)
-{
-	fprintf(stderr, "%s\n", mensaje);
-	exit(EXIT_FAILURE);
-}
 
 void	ft_game_result(t_mapa *data)
 {

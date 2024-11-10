@@ -43,16 +43,13 @@ void	check_general(t_mapa *data)
 
 void	reset_data(t_mapa *data, char *name) 
 {
-	// data->height = 0;
-    	// // data->width = 0;
-    	// data->x = 0;
-    	// data->y = 0;
-    	// data->player = 0;
-    	// data->colectables = 0;
-    	// data->pasos = 0;
-    	// data->finish = 0;
 	data->text = name;
-	cargar_imagenes(data);
+}
+
+void	manejar_error(const char *mensaje)
+{
+	fprintf(stderr, "%s\n", mensaje);
+	exit(EXIT_FAILURE);
 }
 
 int	main(int argc, char *argv[])
@@ -66,16 +63,14 @@ int	main(int argc, char *argv[])
 	}
 	data = (t_mapa *)malloc(sizeof(t_mapa));
 	if (data == NULL)
-	{
-		ft_printf("Fail assigning memory.\n");
-		return (EXIT_FAILURE);
-	}
+		manejar_error("Fail\n");
 	data = (t_mapa *)memset(data, 0, sizeof(t_mapa));
 	data->mlx = mlx_init();
 	data->text = argv[1];
 	load_map(data);
 	ft_check_borders(data);
 	llamada_funciones(data, argv);
+	cargar_imagenes(data);
 	data->win = mlx_new_window(data->mlx, data->width * 64,
 			data->height * 64, "so_long");
 	mlx_hook(data->win, 17, 0, exit_game, (void *)data);
