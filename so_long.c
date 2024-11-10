@@ -26,22 +26,24 @@ int	frame_s(t_mapa *data)
 
 void	check_general(t_mapa *data)
 {
+	t_check	*check;
+
 	ft_printf("Verificando el mapa...\n");
 	comprobacion_open_ber(data);
-	printf("comprobacionhecha\n");
+	ft_printf("comprobacionhecha\n");
 	objetos_de_mapa(data);
-	t_check *check = inicializar_check(data->height, data->width);
+	check = inicializar_check(data->height, data->width);
 	encontrar_posiciones(check, data);
 	if (analizar_accesibilidad(data) == 0)
 	{
-		ft_printf("Error: Invalid map\n Fail to reach colectables o exit\n");
+		ft_printf("Error\n: Invalid map\n Fail to reach colectables o exit\n");
 		liberar_check(check, data->height);
 		exit (EXIT_FAILURE);
 	}
 	liberar_check(check, data->height);
 }
 
-void	reset_data(t_mapa *data, char *name) 
+void	reset_data(t_mapa *data, char *name)
 {
 	data->text = name;
 }
@@ -69,7 +71,7 @@ int	main(int argc, char *argv[])
 	data->text = argv[1];
 	load_map(data);
 	ft_check_borders(data);
-	llamada_funciones(data, argv);
+	call_function(data, argv);
 	cargar_imagenes(data);
 	data->win = mlx_new_window(data->mlx, data->width * 64,
 			data->height * 64, "so_long");

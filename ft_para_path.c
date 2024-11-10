@@ -19,21 +19,20 @@ int	camino_hacia_coleccionables(t_check *check)
 
 int	camino_hacia_salida(t_check *check)
 {
-    return (check->maps[check->exit_x][check->exit_y] == 1);
+	return (check->maps[check->exit_x][check->exit_y] == 1);
 }
 
 int	es_valido(int x, int y, t_check *check, t_mapa *data)
 {
-	if (x >= 0 && x < data->height && y >= 0 && y < data->width &&
-			data->map[x][y] != '1' && check->maps[x][y] == 0)
+	if (x >= 0 && x < data->height && y >= 0 && y < data->width
+		&& data->map[x][y] != '1' && check->maps[x][y] == 0)
 	{
 		return (1);
 	}
 	return (0);
 }
 
-void	ft_input_error(int	argc)
-/* only exists because of the 25 line limit */
+void	ft_input_error(int argc)
 {
 	if (argc != 2)
 	{

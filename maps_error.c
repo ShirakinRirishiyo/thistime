@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-void	objetos_de_mapa(t_mapa *data)
+void	maps_objects(t_mapa *data)
 {
 	t_indices	indices;
 
@@ -42,32 +42,34 @@ void	objetos_de_mapa(t_mapa *data)
 	}
 }
 
-void exit_error(const char *message) {
-    fprintf(stderr, "%s\n", message);
-    exit(EXIT_FAILURE);
+void	exit_error(const char *message)
+{
+	ft_printf("Error\n", message);
+	exit(EXIT_FAILURE);
 }
 
-void ft_check_borders(t_mapa *mapa) 
+void	ft_check_borders(t_mapa *mapa)
 {
-    int idx;
+	int	idx;
 
-    // Verificar la primera y última fila
-    idx = 0;
-    while (idx < mapa->width) {
-        if (mapa->map[0][idx] != '1' || mapa->map[mapa->height - 1][idx] != '1') {
-            exit_error("Error: El borde superior o inferior no está cerrado.");
-        }
-        idx++;
-    }
-
-    // Verificar la primera y última columna
-    idx = 0;
-    while (idx < mapa->height) {
-        if (mapa->map[idx][0] != '1' || mapa->map[idx][mapa->width - 1] != '1') {
-            exit_error("Error: El borde izquierdo o derecho no está cerrado.");
-        }
-        idx++;
-    }
+	idx = 0;
+	while (idx < mapa->width)
+	{
+		if (mapa->map[0][idx] != '1' || mapa->map[mapa->height - 1][idx] != '1')
+		{
+			exit_error("Error: El borde superior o inferior no está cerrado.");
+		}
+		idx++;
+	}
+	idx = 0;
+	while (idx < mapa->height)
+	{
+		if (mapa->map[idx][0] != '1' || mapa->map[idx][mapa->width - 1] != '1')
+		{
+			exit_error("Error: El borde izquierdo o derecho no está cerrado.");
+		}
+		idx++;
+	}
 }
 
 void	comprobacion_open_ber(t_mapa *data)
@@ -82,5 +84,3 @@ void	comprobacion_open_ber(t_mapa *data)
 	}
 	ft_printf("El archivo %s es válido\n", data->text);
 }
-
-

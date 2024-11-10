@@ -14,7 +14,7 @@
 
 void	ft_printear(unsigned int n)
 {
-	char *str;
+	char	*str;
 
 	str = ft_itoa(n);
 	if (str)
@@ -31,7 +31,6 @@ void	ft_printear(unsigned int n)
 
 int	exit_game(t_mapa *data)
 {
-
 	mlx_destroy_window(data->mlx, data->win);
 	printf("--------------------------------------------------\n");
 	printf("|              You gave up :(                    |\n");
@@ -42,17 +41,17 @@ int	exit_game(t_mapa *data)
 	exit (EXIT_FAILURE);
 }
 
-
 void	ft_game_result(t_mapa *data)
 {
 	int	x;
 	int	y;
+
 	mlx_clear_window(data->mlx, data->win);
 	x = data->width * 40 / 2.4;
 	y = data->height * 40 / 4;
 	ft_printf("Dibujando resultado en (%d, %d)\n", x, y);
 	mlx_put_image_to_window(data->mlx,
-			data->win, data->imagenes->player_frame1, x, y);
+		data->win, data->imagenes->player_frame1, x, y);
 }
 
 void	actualizar_pantalla(t_mapa *data)

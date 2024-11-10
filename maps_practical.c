@@ -14,8 +14,10 @@
 
 t_check	*inicializar_check(int height, int width)
 {
-	int	i;
-	t_check *check = malloc(sizeof(t_check));
+	int		i;
+	t_check	*check;
+
+	check = malloc(sizeof(t_check));
 	check->maps = malloc(height * sizeof(int *));
 	i = 0;
 	while (i < height)
@@ -28,7 +30,7 @@ t_check	*inicializar_check(int height, int width)
 	return (check);
 }
 
-void	liberar_check(t_check *check, int height)
+void	free_check(t_check *check, int height)
 {
 	int	i;
 
@@ -59,7 +61,7 @@ void	encontrar_posiciones(t_check *check, t_mapa *data)
 				data->start_j = j;
 			}
 			else if (data->map[i][j] == 'C')
-				check->coins_left++; 
+				check->coins_left++;
 			else if (data->map[i][j] == 'E')
 			{
 				check->exit_x = i;
@@ -76,46 +78,47 @@ void	flood_fill(int x, int y, t_check *check, t_mapa *data)
 {
 	check->maps[x][y] = 1;
 	if (data->map[x][y] == 'C')
-	{
 		check->coins_left--;
-	}
-	if (es_valido(x, y - 1, check, data)) flood_fill(x, y - 1, check, data);
-	if (es_valido(x, y + 1, check, data)) flood_fill(x, y + 1, check, data);
-	if (es_valido(x - 1, y, check, data)) flood_fill(x - 1, y, check, data);
-	if (es_valido(x + 1, y, check, data)) flood_fill(x + 1, y, check, data);
+	if (es_valido(x, y - 1, check, data))
+		flood_fill(x, y - 1, check, data);
+	if (es_valido(x, y + 1, check, data))
+		flood_fill(x, y + 1, check, data);
+	if (es_valido(x - 1, y, check, data))
+		flood_fill(x - 1, y, check, data);
+	if (es_valido(x + 1, y, check, data))
+		flood_fill(x + 1, y, check, data);
 }
 
-
-int analizar_accesibilidad(t_mapa *data)
+int	analizar_accesibilidad(t_mapa *data)
 {
-    int acceso_coleccionables;
-    int acceso_salida;
+	t_check	*check;
+	int		acceso_coleccionables;
+	int		acceso_salida;
 
-    t_check *check = inicializar_check(data->height, data->width);
-    encontrar_posiciones(check, data);
-    if (check->exitparse == 0)
-    {
-        ft_printf("Error: Did not find an exit.\n");
-        liberar_check(check, data->height);  // Liberar memoria
-        return (0); // No se encontró la salida
-    }
-    flood_fill(data->start_i, data->start_j, check, data);
-    acceso_coleccionables = camino_hacia_coleccionables(check);
-    acceso_salida = camino_hacia_salida(check);
-    if (acceso_coleccionables == 1 && acceso_salida == 1)
-    {
-        ft_printf("Player has access to all collectables and exit.\n");
-        liberar_check(check, data->height);
-        return (1); // Todo está bien
-    }
-    else
-    {
-        if (acceso_coleccionables == 0)
-            ft_printf("Error: No access to all collectables.\n");
-        if (acceso_salida == 0)
-            ft_printf("Error: No access to exit.\n");
-    liberar_check(check, data->height); // Liberar memoria
-        return (0); // No se puede acceder a todos los elementos
-    }
+	check = inicializar_check(data->height, data->width);
+	encontrar_posiciones(check, data);
+	if (check->exitparse == 0)
+	{
+		ft_printf("Error: Did not find an exit.\n");
+		liberar_check(check, data->height);
+		return (0);
+	}
+	flood_fill(data->start_i, data->start_j, check, data);
+	acceso_coleccionables = camino_hacia_coleccionables(check);
+	acceso_salida = camino_hacia_salida(check);
+	if (acceso_coleccionables == 1 && acceso_salida == 1)
+	{
+		ft_printf("Player has access to all collectables and exit.\n");
+		liberar_check(check, data->height);
+		return (1);
+	}
+	else
+	{
+		if (acceso_coleccionables == 0)
+			ft_printf("Error\n: No access to all collectables.\n");
+		if (acceso_salida == 0)
+			ft_printf("Error\n: No access to exit.\n");
+		liberar_check(check, data->height);
+		return (0);
+	}
 }
-

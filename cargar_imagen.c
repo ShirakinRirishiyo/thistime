@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-int	cargar_imagen(t_mapa *data, void **img, char *ruta)
+int	load_imagen(t_mapa *data, void **img, char *ruta)
 {
 	int	img_width;
 	int	img_height;
@@ -33,32 +33,52 @@ int	cargar_imagen(t_mapa *data, void **img, char *ruta)
 	return (0);
 }
 
-int	cargar_imagenes(t_mapa *data)
+int load_imagenes(t_mapa *data)
 {
-	ft_printf("Intentando cargar imágenes...\n");
-	data->imagenes = (t_imagenes *)malloc(sizeof(t_imagenes));
-	if (data->imagenes == NULL)
-	{
-		ft_printf("Error al asignar memoria para imágenes.\n");
-		return (1);
-	}
-	if (cargar_imagen(data, &(data->imagenes->wall), WALL_IMAGE)) return 1;
-	if (cargar_imagen(data, &(data->imagenes->space), SPACE_IMAGE)) return 1;
-	if (cargar_imagen(data, &(data->imagenes->player_frame1), PLAYER_F1)) return 1;
-	if (cargar_imagen(data, &(data->imagenes->collect), COLLECT1_IMAGE)) return 1;
-	if (cargar_imagen(data, &(data->imagenes->exit), EXIT_IMAGE)) return 1;
-	ft_printf("Todas las imágenes cargadas correctamente.\n");
-	return (0);
+    ft_printf("Intentando cargar imágenes...\n");
+    data->imagenes = (t_imagenes *)malloc(sizeof(t_imagenes));
+    if (data->imagenes == NULL)
+    {
+        ft_printf("Error al asignar memoria para imágenes.\n");
+        return (1);
+    }
+    if (load_imagen(data, &(data->imagenes->wall), WALL_IMAGE)) 
+    {
+        free_imagenes(data);  // Liberar imágenes ya cargadas
+        return (1);
+    }
+    if (load_imagen(data, &(data->imagenes->space), SPACE_IMAGE)) 
+    {
+        free_imagenes(data);  // Liberar imágenes ya cargadas
+        return (1);
+    }
+    if (load_imagen(data, &(data->imagenes->player_frame1), PLAYER_F1)) 
+    {
+        free_imagenes(data);  // Liberar imágenes ya cargadas
+        return (1);
+    }
+    if (load_imagen(data, &(data->imagenes->collect), COLLECT1_IMAGE)) 
+    {
+        free_imagenes(data);  // Liberar imágenes ya cargadas
+        return (1);
+    }
+    if (load_imagen(data, &(data->imagenes->exit), EXIT_IMAGE)) 
+    {
+        free_imagenes(data);  // Liberar imágenes ya cargadas
+        return (1);
+    }
+    ft_printf("Todas las imágenes cargadas correctamente.\n");
+    return (0);
 }
 
-int llamada_funciones(t_mapa *data, char **argv)
+int call_function(t_mapa *data, char **argv)
 {
 	reset_data(data, argv[1]);
 	check_general(data);
 	return (EXIT_SUCCESS);
 }
 
-void manejar_error_fd(const char *mensaje, int fd, char *line)
+void handle_error_fd(const char *mensaje, int fd, char *line)
 {
     if (line != NULL)
         free(line);     

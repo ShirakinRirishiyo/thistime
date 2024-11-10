@@ -143,6 +143,7 @@ typedef struct s_mapa_info
 } t_mapa_info;
 
 
+void free_imagenes(t_mapa *data);
 int write_itoa(int n);
 void ft_input_error(int argc);
 void load_map(t_mapa *data);
