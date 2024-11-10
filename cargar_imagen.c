@@ -59,12 +59,12 @@ int load_imagenes(t_mapa *data)
     }
     if (load_imagen(data, &(data->imagenes->collect), COLLECT1_IMAGE)) 
     {
-        free_imagenes(data);  // Liberar imágenes ya cargadas
+        free_imagenes(data); 
         return (1);
     }
     if (load_imagen(data, &(data->imagenes->exit), EXIT_IMAGE)) 
     {
-        free_imagenes(data);  // Liberar imágenes ya cargadas
+        free_imagenes(data);  
         return (1);
     }
     ft_printf("Todas las imágenes cargadas correctamente.\n");

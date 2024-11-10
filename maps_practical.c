@@ -100,25 +100,26 @@ int	ft_accesibility(t_mapa *data)
 	if (check->exitparse == 0)
 	{
 		ft_printf("Error: Did not find an exit.\n");
-		liberar_check(check, data->height);
+		free_check(check, data->height);
 		return (0);
 	}
 	flood_fill(data->start_i, data->start_j, check, data);
 	access_colectables = way_to_collect(check);
 	access_exit = way_to_exit(check);
-	if (way_to_collect == 1 && access_exit == 1)
+
+	if (access_colectables == 1 && access_exit == 1)
 	{
 		ft_printf("Player has access to all collectables and exit.\n");
-		liberar_check(check, data->height);
+		free_check(check, data->height);
 		return (1);
 	}
 	else
 	{
-		if (way_to_collect == 0)
+		if (access_colectables== 0)
 			ft_printf("Error\n: No access to all collectables.\n");
 		if (access_exit == 0)
 			ft_printf("Error\n: No access to exit.\n");
-		liberar_check(check, data->height);
+		free_check(check, data->height);
 		return (0);
 	}
 }
