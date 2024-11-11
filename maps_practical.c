@@ -44,35 +44,6 @@ void	free_check(t_check *check, int height)
 	free(check);
 }
 
-void	find_position(t_check *check, t_mapa *data)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < data->height)
-	{
-		j = 0;
-		while (j < data->width)
-		{
-			if (data->map[i][j] == 'P')
-			{
-				data->start_i = i;
-				data->start_j = j;
-			}
-			else if (data->map[i][j] == 'C')
-				check->coins_left++;
-			else if (data->map[i][j] == 'E')
-			{
-				check->exit_x = i;
-				check->exit_y = j;
-				check->exitparse = 1;
-			}
-			j++;
-		}
-		i++;
-	}
-}
 
 void	flood_fill(int x, int y, t_check *check, t_mapa *data)
 {
@@ -98,21 +69,12 @@ int	ft_accesibility(t_mapa *data)
 	check = inicializar_check(data->height, data->width);
 	find_position(check, data);
 	if (check->exitparse == 0)
-	{
-		ft_printf("Error: Did not find an exit.\n");
-		free_check(check, data->height);
-		return (0);
-	}
+	return print_and_free(check, data->height);
 	flood_fill(data->start_i, data->start_j, check, data);
 	access_colectables = way_to_collect(check);
 	access_exit = way_to_exit(check);
-
 	if (access_colectables == 1 && access_exit == 1)
-	{
-		ft_printf("Player has access to all collectables and exit.\n");
-		free_check(check, data->height);
-		return (1);
-	}
+	return print_and_free(check, data->height);
 	else
 	{
 		if (access_colectables== 0)

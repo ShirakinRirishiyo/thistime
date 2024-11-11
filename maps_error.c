@@ -6,40 +6,18 @@
 /*   By: dediaz-f <dediaz-f@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 13:20:59 by dediaz-f          #+#    #+#             */
-/*   Updated: 2024/11/10 10:49:14 by dediaz-f         ###   ########.fr       */
+/*   Updated: 2024/11/11 00:25:37 by dediaz-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	maps_objects(t_mapa *data)
+void maps_objects(t_mapa *data)
 {
-	t_indices	indices;
+    t_indices indices;
 
-	indices.j = 0;
-	indices.end = 0;
-	while (data->map[++indices.j])
-	{
-		indices.i = 0;
-		while (data->map[indices.j][++indices.i])
-		{
-			if (data->map[indices.j][indices.i] == 'P')
-			{
-				data->x = indices.i;
-				data->y = indices.j;
-				data->player++;
-			}
-			else if (data->map[indices.j][indices.i] == 'C')
-				data->colectables++;
-			else if (data->map[indices.j][indices.i] == 'E')
-				indices.end++;
-		}
-	}
-	if (data->player != 1 || data->colectables < 1 || indices.end != 1)
-	{
-		ft_printf ("Error aca\n");
-		exit (EXIT_FAILURE);
-	}
+    count_objects(data, &indices);  // Llamamos a la función para contar objetos
+    validate_map(data, &indices);    // Llamamos a la función para validar el mapa
 }
 
 void	exit_error(const char *message)
