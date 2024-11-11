@@ -10,22 +10,7 @@
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef _COLORS
-# define _COLORS
-
-# define BLACK   "\033[1;30m"
-# define RED     "\033[1;31m"
-# define GREEN   "\033[1;32m"
-# define YELLOW  "\033[1;33m"
-# define BLUE    "\033[1;34m"
-# define MAGENTA "\033[1;35m"
-# define CYAN    "\033[1;36m"
-# define WHITE   "\033[1;37m"
-# define NC      "\033[0m"
-
-#endif
-
-# ifndef SO_LONG_H
+#ifndef SO_LONG_H
 # define SO_LONG_H
 
 # include <unistd.h>
@@ -35,7 +20,6 @@
 # include "./printf/ft_printf.h"
 # include "./minilibx-linux/mlx.h"
 
-
 # define ESC	65307
 # define W		119
 # define A		97
@@ -43,23 +27,21 @@
 # define D		100
 # define SPRITE_SIZE 64
 
-
 # define WALL_IMAGE "./sprites/walls.xpm"
 # define SPACE_IMAGE "./sprites/pared.xpm"
 # define PLAYER "./sprites/player1.xpm"
 # define COLLECT1_IMAGE "./sprites/oritoabajo.xpm"
 # define EXIT_IMAGE "./sprites/castle.xpm"
 
-
 # define VALIDOS "10CPE"
 
-typedef	struct s_check 
+typedef	struct s_check
 {
 	int		**maps;
 	int		coins_left;
 	int		exitparse;
 	int		exit_x;
-	int		exit_y;         
+	int		exit_y;
 }	t_check;
 
 typedef	struct s_imagenes
@@ -72,7 +54,7 @@ typedef	struct s_imagenes
 	void	*torre;
 }	t_imagenes;
 
-typedef	struct s_mapa 
+typedef struct	s_mapa
 {
 	char	*text;
 	char	**map;
@@ -93,30 +75,30 @@ typedef	struct s_mapa
 	int		exit_x;
 	int		exit_y;
 	int		player;
-	int	colectables;
-	int	finish;
-	unsigned int	pasos;
+	int		colectables;
+	int		finish;
+	unsigned int			pasos;
 	void	*background_img;
 	void	*mlx;
 	void	*win;
-	t_imagenes *imagenes;   
-}	t_mapa;   
+	t_imagenes		*imagenes;
+}	t_mapa;
 
-typedef	struct s_indices 
+typedef struct s_indices
 {
 	int	i;
 	int	j;
-	int	end; 
+	int	end;
 }	t_indices;
 
-typedef	struct s_contxt
+typedef struct s_contxt
 {
-	void	*mlx;
-	void	*win;
-	t_imagenes	*imagenes; 
+	void		*mlx;
+	void		*win;
+	t_imagenes	*imagenes;
 }	t_contxt;
 
-typedef struct s_mapa_info 
+typedef struct s_mapa_info
 {
 	int		fd;
 	char	*line;
@@ -124,7 +106,7 @@ typedef struct s_mapa_info
 	int		current_line_length;
 	int		first_line_length;
 	int		is_rectangular;
-	int		i;                     
+	int		i;
 }	t_mapa_info;
 
 void		handle_error(const char *mensaje);
@@ -135,9 +117,12 @@ int			ft_accesibility(t_mapa *data);
 void		flood_fill(int x, int y, t_check *check, t_mapa *data);
 int			load_imagen(t_mapa *data, void **img, char *ruta);
 int			load_imagenes(t_mapa *data);
+int         imagen_error(t_mapa *data, void **image,  char *image_path);
 int			call_function(t_mapa *data, char **argv);
 void		handle_error_fd(const char *mensaje, int fd, char *line);
 void		maps_objects(t_mapa *data);
+void        count_objects(t_mapa *data, t_indices *indices);
+void        validate_map(t_mapa *data, t_indices *indices);
 void		exit_error(const char *message);
 void		comprobacion_open_ber(t_mapa *data);
 void		load_map(t_mapa *data);
@@ -163,8 +148,8 @@ void		move_s(t_mapa *data);
 void		move_d(t_mapa *data);
 void		move_a(t_mapa *data);
 int			ft_strlen_trimmed(const char *str);
-void			flood_fill(int x, int y, t_check *check, t_mapa *data);
-void		find_exit(t_mapa *data, t_check *c);
+void		flood_fill(int x, int y, t_check *check, t_mapa *data);
+void		find_exit(t_check *c, t_mapa *data);
 void		init_map(t_mapa *data, t_mapa_info *info);
 void		reset_data(t_mapa *data, char *name);
 int			frame_s(t_mapa *data);
@@ -178,7 +163,7 @@ void		ft_game_result(t_mapa *data);
 void		malloc_fail(void);
 void		read_map(t_mapa *data);
 void		mapa_size(t_mapa *data);
-t_check	*inicializar_check(int height, int width);
+t_check		*inicializar_check(int height, int width);
 void		free_check(t_check *check, int height);
 void		comprobacion_open_ber(t_mapa *data);
 void		ft_window_size(t_mapa *data);
@@ -186,7 +171,7 @@ int			check_rectangular(t_mapa *mapa);
 int			es_valido(int x, int y, t_check *check, t_mapa *data);
 void		flood_fill(int x, int y, t_check *check, t_mapa *data);
 void		check_general(t_mapa *data);
-void		draw_grid(t_mapa *data); 
+void		draw_grid(t_mapa *data);
 void		reset_data(t_mapa *data, char *name);
 void		free_game(t_mapa *data);
 void		free_array(char **array);

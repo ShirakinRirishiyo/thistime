@@ -18,6 +18,8 @@ SRCS = cargar_imagen.c \
        ft_utils_maps.c \
        maps_practical.c \
        free_game.c \
+	   ft_utils_for_other.c \
+	   ft_find_position.c \
        so_long.c
 
 # Crear la lista de objetos a partir de los archivos fuente

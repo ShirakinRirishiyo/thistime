@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-int	load_imagen(t_mapa *data, void **img, char *ruta)
+int	load_imagen(t_mapa *data, void **img,  char *ruta)
 {
 	int	img_width;
 	int	img_height;
@@ -33,7 +33,7 @@ int	load_imagen(t_mapa *data, void **img, char *ruta)
 	return (0);
 }
 
-int	load_imagen_error(t_mapa *data, void **image, const char *image_path)
+int	imagen_error(t_mapa *data, void **image,  char *image_path)
 {
 	if (load_imagen(data, image, image_path))
 	{
@@ -57,9 +57,9 @@ int	load_imagenes(t_mapa *data)
 		return (1);
 	if (imagen_error(data, (void **)&(data->imagenes->player_frame1), PLAYER))
 		return (1);
-	if (image_error(data, (void **)&(data->imagenes->collect), COLLECT1_IMAGE))
+	if (imagen_error(data, (void **)&(data->imagenes->collect), COLLECT1_IMAGE))
 		return (1);
-	if (image_error(data, (void **)&(data->imagenes->exit), EXIT_IMAGE))
+	if (imagen_error(data, (void **)&(data->imagenes->exit), EXIT_IMAGE))
 		return (1);
 	ft_printf("Todas las imágenes cargadas correctamente.\n");
 	return (0);
